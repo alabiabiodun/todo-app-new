@@ -71,28 +71,12 @@
 
     
     function updateDatabase(){
-<<<<<<< HEAD
         var value = todoInput.value;
         xx = todoDatabase.toString();
         duplicate = xx.toLowerCase().includes(value.toLowerCase());
         if (todoDatabase.length > 0 && duplicate === true){
             alert('No duplicate entry......');
             return;
-=======
-        var value = todoInput.value;        
-        if (todoDatabase.length > 0){
-            for (var i in todoDatabase) {    
-                if (todoDatabase[i] === value) {
-                    alert('No duplicate entry......');
-                    break;
-                }
-                else if (todoDatabase[i] !== value){
-                    todoDatabase.push(value);
-                    todoDatabase = [...new Set(todoDatabase)];                                                
-                    
-                }
-            }            
->>>>>>> 80d433fcd1f50c10a71eaaa5afb69ee43604f199
         }
         else if(todoDatabase.length > 0 && duplicate === false){
             todoDatabase.push(value);
