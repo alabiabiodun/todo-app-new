@@ -10,7 +10,7 @@
 </head>
 <body class="text-center">
     <main class="form-signin">
-      <form>
+      <form onsubmit="event.preventDefault();">
         <h1 class="h3 mb-3 fw-normal">Todo App</h1>
     
         <div class="form-floating">
@@ -47,6 +47,8 @@
             '<span>'+val+'</span>  <a href="#" onclick="removeElement(event)" id="'+index+'" class="text-end">Delete</a>' +
             '</li>';
             listContainer.innerHTML += content;
+            
+            
         });
     }
 
@@ -62,31 +64,29 @@
         if(value.length > 0 && event.which === 13){
             updateDatabase();
             display();
-            event.preventDefault();
+            //event.preventDefault();
             todoInput.value="";           
         }        
     };
 
+    
     function updateDatabase(){
-        var value = todoInput.value;        
-        if (todoDatabase.length > 0){
-            for (var i in todoDatabase) {    
-                if (todoDatabase[i] === value) {
-                    alert('No dupicate entry......');
-                    break;
-                }
-                else if (todoDatabase[i] !== value){
-                    todoDatabase.push(value);
-                    todoDatabase = [...new Set(todoDatabase)];                                                
-                    
-                }
-            }            
+        var value = todoInput.value;
+        xx = todoDatabase.toString();
+        duplicate = xx.toLowerCase().includes(value.toLowerCase());
+        if (todoDatabase.length > 0 && duplicate === true){
+            alert('No duplicate entry......');
+            return;
         }
-        else if (todoDatabase.length === 0){
+        else if(todoDatabase.length > 0 && duplicate === false){
             todoDatabase.push(value);
-        }             
-    }
+        }
+        else{
+            todoDatabase.push(value);
+        }
+    }     
 
+    //todoDatabase = [...new Set(todoDatabase)];       
        
     function addListAfterClick(){
         var value = todoInput.value;
