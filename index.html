@@ -70,7 +70,7 @@
     
     function updateDatabase(){
         var value = todoInput.value;
-        xx = todoDatabase.toString();
+        var xx = todoDatabase.toString();
         duplicate = xx.toLowerCase().includes(value.toLowerCase());
         if (todoDatabase.length > 0 && duplicate === true){
             alert('No duplicate entry......');
